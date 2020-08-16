@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453528774168",
+    "firebase_url": "https://rojgaarcard.firebaseio.com",
+    "project_id": "rojgaarcard",
+    "storage_bucket": "rojgaarcard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453528774168:android:461d3d264f2bd291be456d",
+        "android_client_info": {
+          "package_name": "com.rojgaarcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453528774168-rqemg8cuod780u3nqh1mqsf2pj2u39kt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF3nC0Ny_ymLzeIcP0GZJGL6QN3718gU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453528774168-rqemg8cuod780u3nqh1mqsf2pj2u39kt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
