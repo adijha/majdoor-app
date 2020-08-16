@@ -331,6 +331,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     backgroundColor: '#F2F0F0',
     borderRadius: 10,
+    paddingLeft:10
   },
   labelStyle: {
     color: 'black',

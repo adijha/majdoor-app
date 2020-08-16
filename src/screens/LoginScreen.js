@@ -21,7 +21,7 @@ const LoginScreen = () => {
 
   const validatePhoneNumber = () => {
     var regexp = /^\+[0-9]?()[0-9](\s|\S)(\d[0-9]{8,16})$/;
-    return regexp.test(`+91${number}`);
+    return regexp.test(`+977${number}`);
   };
 
   const handleSendCode = () => {
@@ -29,7 +29,7 @@ const LoginScreen = () => {
     // Request to send OTP
     if (validatePhoneNumber()) {
       auth()
-        .signInWithPhoneNumber(`+91${number}`)
+        .signInWithPhoneNumber(`+977${number}`)
         .then((confirmResult) => {
           setConfirm(confirmResult);
         })
@@ -120,7 +120,7 @@ const LoginScreen = () => {
           <TextInput
             style={styles.input}
             autoFocus={true}
-            keyboardType={'phone-pad'}
+            keyboardType={'numeric'}
             maxLength={10}
             placeholder={language ? 'मोबाइल नंबर' : 'Mobile Number'}
             underlineColorAndroid="transparent"
@@ -194,13 +194,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    textAlign: 'center',
-    borderBottomWidth: 1,
+    // textAlign: 'left',
+    // borderBottomWidth: 1,
     backgroundColor: 'white',
     borderRadius: 10,
     height: 60,
     fontSize: 20,
-    borderBottomWidth: 0,
+    paddingLeft: 30,
+    // borderBottomWidth: 0,
   },
   inputContainerStyle: {
     borderBottomWidth: 0,
