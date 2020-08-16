@@ -10,12 +10,15 @@ const ResolveAuthScreen = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
   function onAuthStateChanged(user) {
+    setTimeout(() => {
     console.log({user});
     if (user) {
       update_uid(user.uid, user.phoneNumber);
       setUser(user);
     }
-    if (initializing) setInitializing(false);
+      
+      if (initializing) setInitializing(false);
+    }, 2000);
   }
 
   useEffect(() => {
