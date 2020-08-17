@@ -21,7 +21,7 @@ const LoginScreen = () => {
 
   const validatePhoneNumber = () => {
     var regexp = /^\+[0-9]?()[0-9](\s|\S)(\d[0-9]{8,16})$/;
-    return regexp.test(`+977${number}`);
+    return regexp.test(`+91${number}`);
   };
 
   const handleSendCode = () => {
@@ -29,7 +29,7 @@ const LoginScreen = () => {
     // Request to send OTP
     if (validatePhoneNumber()) {
       auth()
-        .signInWithPhoneNumber(`+977${number}`)
+        .signInWithPhoneNumber(`+91${number}`)
         .then((confirmResult) => {
           setConfirm(confirmResult);
         })
