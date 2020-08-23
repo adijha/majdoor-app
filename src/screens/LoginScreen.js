@@ -5,7 +5,9 @@ import Spacer from '../components/Spacer';
 import ToggleLanguage from '../components/ToggleLanguage';
 import ShowError from '../components/ShowError';
 import {Context as LanguageContext} from '../context/LanguageContext';
+import {Context as AuthContext} from '../context/AuthContext';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import {navigate} from '../navigationRef';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 
@@ -14,7 +16,7 @@ const LoginScreen = () => {
   const [number, setNumber] = useState(null);
   const [error, setError] = useState(null);
   const [code, setCode] = useState(null);
-
+  const {update_uid} = useContext(AuthContext);
   const {state, toggleLanguage} = useContext(LanguageContext);
   const {text, iconContainerStyle, iconStyle, otpContainer} = styles;
   const {language} = state;
@@ -50,8 +52,26 @@ const LoginScreen = () => {
     if (code.length == 6) {
       confirm
         .confirm(code)
-        .then((user) => {
-          navigate('Form');
+        .then(async (user) => {
+          update_uid(user.user.uid, user.user.phoneNumber);
+          const userAvailable = await firestore()
+            .collection('users')
+            .doc(user.user.uid)
+            .get();
+          if (userAvailable.data()) {
+            navigate('Share', {
+              userData: {
+                number: userAvailable.data().phoneNumber,
+                address: userAvailable.data().city,
+                pincode: userAvailable.data().pinCode,
+                name: userAvailable.data().name,
+                skill: userAvailable.data().skill,
+              },
+            });
+          } else {
+            navigate('Form');
+          }
+
           console.log('==>', user.user.phoneNumber, user.user.uid);
         })
         .catch((error) => {

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   ImageBackground,
@@ -11,17 +11,12 @@ import {Text, Icon} from 'react-native-elements';
 import {shareOnFacebook} from 'react-native-social-share';
 import Spacer from '../components/Spacer';
 import {Context as LanguageContext} from '../context/LanguageContext';
-// import firestore from '@react-native-firebase/firestore';
 const imgSrc = require('../assets/shareImg.png');
 
-// const dummyNumber = 8340238900;
-// const dummyName = 'Samrat Jaiswal';
-// const dummyAddress = 'Patna, Bihar';
-// const dummyPinCode = 800012;
-
-const ShareScreen = ({navigation}) => {
-  const fetchData = navigation.getParam('data');
-  // const [fetchData, setFetchData] = useState({});
+const ShareScreen = (props) => {
+  const fetchData = props.navigation
+    ? props.navigation.getParam('userData')
+    : props.userData;
   const {state} = useContext(LanguageContext);
   const {language} = state;
   const {
@@ -45,6 +40,7 @@ const ShareScreen = ({navigation}) => {
   } = styles;
 
   const makeCall = () => {
+    let phoneNumber;
     if (Platform.OS === 'android') {
       phoneNumber = 'tel:${9876543210}';
     } else {
@@ -55,6 +51,8 @@ const ShareScreen = ({navigation}) => {
   };
 
   const shareToWhatsApp = () => {
+    let phoneNumber;
+
     if (Platform.OS === 'android') {
       Linking.openURL('whatsapp://send?text=add playstore app link ');
 
@@ -102,7 +100,7 @@ const ShareScreen = ({navigation}) => {
             <Text style={cardType}>ROJGAAR CARD</Text>
             <Text style={cardNumber}>{fetchData.number.slice(3, 13)}</Text>
             <Text style={cardName}>{fetchData.name}</Text>
-            <Text style={cardSecurity}>SECURITY</Text>
+            <Text style={cardSecurity}>{fetchData.skill}</Text>
             <Text style={cardAddress}>{fetchData.address}</Text>
             <Text style={cardPinCode}>{fetchData.pincode}</Text>
           </ImageBackground>

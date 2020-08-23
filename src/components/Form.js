@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Input, Button, Text} from 'react-native-elements';
 import {
   StyleSheet,
@@ -46,6 +46,18 @@ const AuthForm = ({language, toggleLanguage}) => {
     buttonTitleStyle,
     jobDescription,
   } = styles;
+
+  const getUser = async () => {
+    const userAvailable = await firestore()
+      .collection('users')
+      .doc(user.user.uid)
+      .get();
+    console.log(userAvailable.data());
+  };
+
+  useEffect(() => {
+    //  getUser()
+  }, []);
 
   const createUserDatabase = (data) => {
     firestore()
@@ -98,22 +110,22 @@ const AuthForm = ({language, toggleLanguage}) => {
       setError(null);
       navigate('Share', {data: {name, number: phoneNumber, address, pincode}});
     } else {
-      // console.log({uid});
-      // console.log({phoneNumber});
-      // console.log({name});
-      // console.log({age});
-      // console.log({gender});
-      // console.log({address});
-      // console.log({city});
-      // console.log({addressState});
-      // console.log({skill});
-      // console.log({experience});
-      // console.log({pincode});
-      // console.log({companyName});
-      // console.log({companyAddress});
-      // console.log({companyCity});
-      // console.log({companyState});
-      // console.log({companyPincode});
+      console.log({uid});
+      console.log({phoneNumber});
+      console.log({name});
+      console.log({age});
+      console.log({gender});
+      console.log({address});
+      console.log({city});
+      console.log({addressState});
+      console.log({skill});
+      console.log({experience});
+      console.log({pincode});
+      console.log({companyName});
+      console.log({companyAddress});
+      console.log({companyCity});
+      console.log({companyState});
+      console.log({companyPincode});
       setError('Please enter all the field');
     }
   };
@@ -331,7 +343,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     backgroundColor: '#F2F0F0',
     borderRadius: 10,
-    paddingLeft:10
+    paddingLeft: 10,
   },
   labelStyle: {
     color: 'black',
