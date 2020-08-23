@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
   headerStyle: {
     fontSize: 30,
     textAlign: 'center',
+    paddingHorizontal: 20,
   },
   paragraphStyle: {
     fontSize: 20,
